@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Story() {
+export function Story() {
 
     return (
         <article>
