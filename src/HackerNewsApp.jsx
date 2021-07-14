@@ -1,4 +1,3 @@
-import React from 'react';
 import { Header } from './Components/Header/Header';
 import { Stories } from './Components/Stories/Stories';
 import { Comments } from './Components/Comments/Comments';
@@ -14,7 +13,6 @@ export function HackerNewsApp() {
             <Route key={i} path={obj.path}>
                 <Stories 
                     storiesApiName={obj.api}
-                    storiesPath={obj.path} 
                 />
             </Route>
         ]
