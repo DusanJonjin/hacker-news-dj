@@ -1,4 +1,4 @@
-export default function FakeStory() {
+export function FakeStory() {
 
     return (
         <article className='fake-story'>

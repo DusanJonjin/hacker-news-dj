@@ -1,8 +1,15 @@
-export function Title() {
+export function Title({ storyUrl, title }) {
 
     return (
         <h2>
-            <a>Title</a>
+            <a 
+                href={storyUrl} 
+                target='_blank' 
+                rel='noopener noreferrer'
+                className={`title-link`}
+            >
+            {title}
+            </a>
         </h2>
-    )
+    );
 }

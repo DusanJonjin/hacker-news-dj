@@ -1,8 +1,8 @@
-export function TimeAgo() {
+export function TimeAgo({ time }) {
 
     return (
         <p>
-            
+            {time}
         </p>
     )
 }

@@ -1,6 +1,6 @@
 const mainURL = 'https://hacker-news.firebaseio.com/v0';
 
-// Async function to get all top stories or new stories id's in array:
+// Async function to get all stories (top, new, show, ask...) id's in array:
 export const getStoriesIDs = async (storiesApiName, abortSignal, pageNum, storiesPerPage) =>  {
     try {
         const fetchStoriesIDs = await fetch(
@@ -13,6 +13,24 @@ export const getStoriesIDs = async (storiesApiName, abortSignal, pageNum, storie
         const storiesFromNum = storiesToNum - storiesPerPage;
         const ids = cleanIds.slice(storiesFromNum, storiesToNum);
         return {status: 'isLoaded', ids, count};
+    }
+
+    catch (err) {
+        if (err.name === 'AbortError') return {status: 'isLoading'};
+        return {status: 'error'}
+    }
+};
+
+/* Async function to get an item (every comment or story has an unique ID which
+we insert in this function, and then get it back from server as json object) */
+export const getItem = async (itemID, abortSignal) => {
+    try {
+        const fetchItem = await fetch(
+            `${mainURL}/item/${itemID}.json?print=pretty`,
+            {signal: abortSignal}
+        );
+        const item = await fetchItem.json();
+        return {status: 'isLoaded', item}
     }
 
     catch (err) {

@@ -1,6 +1,6 @@
 import { CommentsCount } from './CommentsCount';
 import { Score } from './Score';
-import { StoryUrlShort } from './StoryUrlShort';
+import { StorysDomain } from './StorysDomain';
 import { Text } from './Text';
 import { Title } from './Title';
 import { User } from './User';
@@ -9,7 +9,7 @@ import { TimeAgo } from './TimeAgo';
 export { 
     CommentsCount,
     Score,
-    StoryUrlShort,
+    StorysDomain,
     Text,
     TimeAgo,
     Title,

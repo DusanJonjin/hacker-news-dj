@@ -1,8 +1,8 @@
-export function User() {
-    
+export function User({ user, byWord='' }) {
+
     return (
         <p>
-            User
+           {byWord} {user}
         </p>
-    )
+    );
 }
