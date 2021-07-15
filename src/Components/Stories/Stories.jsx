@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StoriesList } from './StoriesList';
 import { StoriesPaginate } from './StoriesPaginate';
+import { StoryComments } from './StoryComments';
+import { FakeStoriesList } from '../- Placeholders -/FakeStoriesList';
 import { getStoriesIDs } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
 import { useLocation, useRouteMatch } from 'react-router';
@@ -32,18 +34,34 @@ export function Stories({ storiesApiName }) {
         ).then(res => isMounted.current && setStoriesObj(res)); 
         window.scrollTo(0, 0);
         // If a user quickly clicks on a paginate button and then some nav link:
-         return () => {
-            abortController.abort();
-        }     
+         return () => abortController.abort();     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNum, storiesApiName]);
 
-    console.log(useRouteMatch())
+    const { status, ids, count } = storiesObj;
 
     return (
-        <React.Fragment>
-            <StoriesList />
-            <StoriesPaginate />
-        </React.Fragment>
+        <section className='stories-with-comments'>
+            {
+                {  
+                    'isLoading': 
+                        <FakeStoriesList />, 
+                    'error':
+                        <p className='error'>
+                            Network error. Refresh the browser, or try again later.
+                        </p>,
+                    'isLoaded':
+                        <React.Fragment>
+                            <StoriesList 
+                                storiesIDs={ids}
+                                pageNum={pageNum}
+                                storiesPerPage={storiesPerPage}
+                                storiesURL={url}
+                            />
+                            <StoriesPaginate />
+                        </React.Fragment>
+                }[status]
+            }
+        </section>
     )
 }
