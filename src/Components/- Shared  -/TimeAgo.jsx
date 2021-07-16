@@ -1,8 +1,12 @@
+import { calculateTimeAgo } from '../../Utilities/helperFunctions';
+
 export function TimeAgo({ time }) {
+
+    const timeAgo = calculateTimeAgo(time);
 
     return (
         <p>
-            {time}
+            {timeAgo}
         </p>
-    )
+    );
 }

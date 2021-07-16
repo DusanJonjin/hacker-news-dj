@@ -10,6 +10,7 @@ import {
 import { FakeStory } from '../- Placeholders -/FakeStory';
 import { getItem } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
+import { handleDomainFromUrl } from '../../Utilities/helperFunctions';
 import { Link } from 'react-router-dom';
 
 
@@ -32,6 +33,8 @@ export function Story({ storyID, storyNum, pageNum, storiesUrl }) {
         pathname: pageNum === 1 ? `${storiesUrl}/itemId=${item.id}` : `${storiesUrl}/page_${pageNum}/itemId=${item.id}`
     }
 
+    const domain = handleDomainFromUrl(item.url);
+
     return (
         status === 'isLoading' ? <FakeStory /> :
             <article className={`story`}>
@@ -43,8 +46,7 @@ export function Story({ storyID, storyNum, pageNum, storiesUrl }) {
                         storyUrl={item.url}
                         title={item.title}
                     />
-                  
-                  
+                    <StorysDomain domain={domain} />             
                 </div> 
                 <div className={`story-bottom-wrap`}>
                     <div className={`small-wrap-one`}>

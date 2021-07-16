@@ -34,7 +34,7 @@ export function Stories({ storiesApiName }) {
         ).then(res => isMounted.current && setStoriesObj(res)); 
         window.scrollTo(0, 0);
         // If a user quickly clicks on a paginate button and then some nav link:
-         return () => abortController.abort();     
+        return () => abortController.abort();     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNum, storiesApiName]);
 
