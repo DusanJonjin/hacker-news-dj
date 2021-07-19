@@ -5,7 +5,7 @@ import { StoryComments } from './StoryComments';
 import { FakeStoriesList } from '../- Placeholders -/FakeStoriesList';
 import { getStoriesIDs } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
-import { useLocation, useRouteMatch } from 'react-router';
+import { Switch, Route, useLocation, useRouteMatch } from 'react-router';
 
 export function Stories({ storiesApiName }) {
 
@@ -22,18 +22,31 @@ export function Stories({ storiesApiName }) {
     // eslint-disable-next-line no-unused-vars
     const [storiesPerPage, setStoriesPerPage] = useState(20);
 
+    const [midBtnsArr, setMidBtnsArr] = useState([]);
+
+    const initialBtnsArr = (storiesCount, pageNum) => {
+        const pagesCount = Math.ceil(storiesCount / storiesPerPage);
+        if (pagesCount < 8) return Array.from({length: pagesCount}, (v, i) => i + 1);
+        return Array.from({length: 5}, (v, i) => i + 2);
+    }
+
+    const handleMidBtnsArr = array => {
+        setMidBtnsArr(array)
+    };
+
     const { isMounted, abortController, abortSignal } = usePreventSetStateOnUnmount();
 
     useEffect(() => {
         setStoriesObj(initialStoriesObj);
-        getStoriesIDs(
-            storiesApiName, 
-            abortSignal,
-            pageNum,
-            storiesPerPage
-        ).then(res => isMounted.current && setStoriesObj(res)); 
+        getStoriesIDs(storiesApiName, abortSignal, pageNum, storiesPerPage).then(res => 
+            isMounted.current && (
+                setStoriesObj(res),
+                midBtnsArr.length < 1 && 
+                setMidBtnsArr(initialBtnsArr(res.count))
+            )
+        ); 
         window.scrollTo(0, 0);
-        // If a user quickly clicks on a paginate button and then some nav link:
+        // If a user quickly clicks on a paginate button and then on some nav link:
         return () => abortController.abort();     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNum, storiesApiName]);
@@ -51,15 +64,32 @@ export function Stories({ storiesApiName }) {
                             Network error. Refresh the browser, or try again later.
                         </p>,
                     'isLoaded':
-                        <React.Fragment>
-                            <StoriesList 
-                                storiesIDs={ids}
-                                pageNum={pageNum}
-                                storiesPerPage={storiesPerPage}
-                                storiesURL={url}
-                            />
-                            <StoriesPaginate />
-                        </React.Fragment>
+                        <Switch>
+                            <Route exact path={pageNum === 1 ? url : `${url}/page_:PageNum`}>
+                                <React.Fragment>
+                                    <StoriesList 
+                                        storiesIDs={ids}
+                                        pageNum={pageNum}
+                                        storiesPerPage={storiesPerPage}
+                                        storiesURL={url}
+                                    />
+                                    <StoriesPaginate
+                                        pageNum={pageNum}
+                                        storiesCount={count}
+                                        midBtnsArr={midBtnsArr}
+                                        handleMidBtnsArr={handleMidBtnsArr} 
+                                        storiesPerPage={storiesPerPage}
+                                        storiesURL={url}                  
+                                    />
+                                </React.Fragment>
+                            </Route>
+                            <Route exact path={pageNum === 1 ? `${url}/itemId=:StoryId` : `${url}/page_:PageNum/itemId=:StoryId`}>
+                                <StoryComments />
+                            </Route>
+                            <Route path='*'>
+                                <h2>Invalid URL!</h2>
+                            </Route>
+                        </Switch>
                 }[status]
             }
         </section>
