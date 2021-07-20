@@ -22,16 +22,22 @@ export function Stories({ storiesApiName }) {
     // eslint-disable-next-line no-unused-vars
     const [storiesPerPage, setStoriesPerPage] = useState(20);
 
-    const [midBtnsArr, setMidBtnsArr] = useState([]);
+    const [paginateMidBtns, setPaginateMidBtns] = useState([]);
 
-    const initialBtnsArr = (storiesCount, pageNum) => {
+    const initialMidBtns = (storiesCount, pageNum) => {
         const pagesCount = Math.ceil(storiesCount / storiesPerPage);
-        if (pagesCount < 8) return Array.from({length: pagesCount}, (v, i) => i + 1);
-        return Array.from({length: 5}, (v, i) => i + 2);
+        if (pagesCount < 8) return Array.from({length: pagesCount}, (_, i) => i + 1);
+        const midBtnsCount = 5;
+        const initialBtns = Array.from({length: midBtnsCount}, (_, i) => {
+            if (pageNum <= midBtnsCount) return (i + 2);
+            if (pageNum >= pagesCount - (midBtnsCount - 1)) return (i + (pagesCount - midBtnsCount));
+            return (i + (pageNum - 2));
+        })
+        return initialBtns;
     }
 
-    const handleMidBtnsArr = array => {
-        setMidBtnsArr(array)
+    const handleMidBtns = array => {
+        setPaginateMidBtns(array)
     };
 
     const { isMounted, abortController, abortSignal } = usePreventSetStateOnUnmount();
@@ -41,8 +47,8 @@ export function Stories({ storiesApiName }) {
         getStoriesIDs(storiesApiName, abortSignal, pageNum, storiesPerPage).then(res => 
             isMounted.current && (
                 setStoriesObj(res),
-                midBtnsArr.length < 1 && 
-                setMidBtnsArr(initialBtnsArr(res.count))
+                paginateMidBtns.length < 1 && 
+                setPaginateMidBtns(initialMidBtns(res.count, pageNum))
             )
         ); 
         window.scrollTo(0, 0);
@@ -76,8 +82,8 @@ export function Stories({ storiesApiName }) {
                                     <StoriesPaginate
                                         pageNum={pageNum}
                                         storiesCount={count}
-                                        midBtnsArr={midBtnsArr}
-                                        handleMidBtnsArr={handleMidBtnsArr} 
+                                        midBtns={paginateMidBtns}
+                                        handleMidBtns={handleMidBtns} 
                                         storiesPerPage={storiesPerPage}
                                         storiesURL={url}                  
                                     />

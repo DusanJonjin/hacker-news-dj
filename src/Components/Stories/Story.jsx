@@ -23,6 +23,7 @@ export function Story({ storyID, storyNum, pageNum, storiesUrl }) {
     useEffect(() => {
         getItem(storyID, abortSignal).then(res => isMounted.current && setStory(res));
         return () => abortController.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const { status, item } = story;

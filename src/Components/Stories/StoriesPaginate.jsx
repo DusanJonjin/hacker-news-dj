@@ -6,32 +6,32 @@ export function StoriesPaginate(props) {
     const {
         pageNum, 
         storiesCount=500, 
-        handleMidBtnsArr, 
-        midBtnsArr,
+        handleMidBtns, 
+        midBtns,
         storiesPerPage,
         storiesURL
     } = props;
 
-    const firstPageNum = 1;
+    const firstPage = 1;
 
-    const lastPageNum = Math.ceil(storiesCount / storiesPerPage);
+    const lastPage = Math.ceil(storiesCount / storiesPerPage);
 
-    const firstMidBtnNum = midBtnsArr[0];
+    const firstMidBtn = midBtns[0];
 
-    const lastMidBtnNum = midBtnsArr[midBtnsArr.length - 1]
+    const lastMidBtn = midBtns[midBtns.length - 1]
 
-    const midBtnsCount = midBtnsArr.length;
+    const midBtnsCount = midBtns.length;
 
     const initialBtnsArr = Array.from(
-        {length: midBtnsCount}, (v ,i) => i + 2
+        {length: midBtnsCount}, (_ ,i) => i + 2
     );
 
-    const handleFirstPageNumSelect = () => handleMidBtnsArr(initialBtnsArr);
+    const handleFirstPageSelect = () => handleMidBtns(initialBtnsArr);
 
-    const handleLastPageNumSelect = () => {
-        handleMidBtnsArr(
+    const handleLastPageSelect = () => {
+        handleMidBtns(
             Array.from(
-                {length: midBtnsCount}, (v, i) => i + (lastPageNum - midBtnsCount)
+                {length: midBtnsCount}, (_, i) => i + (lastPage - midBtnsCount)
             )
         );
     };
@@ -41,31 +41,31 @@ export function StoriesPaginate(props) {
       : (midBtnsCount - 1) / 2
     ;
 
-    const increaseMidBtnsArrValues = () => {
-        if (lastMidBtnNum === lastPageNum - 1) return;
-        const increasedArrValues = midBtnsArr.map(num => 
+    const increaseMidBtnsValues = () => {
+        if (lastMidBtn === lastPage - 1) return;
+        const increasedArrValues = midBtns.map(num => 
             num + numToChangeMidBtnsArr
         );
-        handleMidBtnsArr(increasedArrValues);
+        handleMidBtns(increasedArrValues);
     };
 
-    const decreaseMidBtnsArrValues = () => {
-        if (firstMidBtnNum === firstPageNum + 1) return;
-        const decreasedArrValues = midBtnsArr.map(num => 
+    const decreaseMidBtnsValues = () => {
+        if (firstMidBtn === firstPage + 1) return;
+        const decreasedArrValues = midBtns.map(num => 
             num - numToChangeMidBtnsArr
         );
-        handleMidBtnsArr(decreasedArrValues);
+        handleMidBtns(decreasedArrValues);
     };
 
     const handlePaginateBtnClick = (num, i, arr) => {
         if (num === pageNum) return;
-        if (firstMidBtnNum !== 1) {
-            if (i === 0) decreaseMidBtnsArrValues();
-            if (i === arr.length - 1) increaseMidBtnsArrValues();
+        if (firstMidBtn !== 1) {
+            if (i === 0) decreaseMidBtnsValues();
+            if (i === arr.length - 1) increaseMidBtnsValues();
         }
     };
 
-    const paginationBtns = midBtnsArr.map((num, i, arr) =>
+    const paginationBtns = midBtns.map((num, i, arr) =>
         <Link 
             to={num === 1 ? storiesURL : `${storiesURL}/page_${num}`}
             key={num}
@@ -77,11 +77,11 @@ export function StoriesPaginate(props) {
     );
 
     const displayThreeDots = {
-        onStart: firstMidBtnNum !== firstPageNum + 1,
-        onEnd: lastMidBtnNum !== lastPageNum - 1
+        onStart: firstMidBtn !== firstPage + 1,
+        onEnd: lastMidBtn !== lastPage - 1
     }
 
-    const showFirstLastPageBtn = firstMidBtnNum > 1
+    const showFirstLastPageBtn = firstMidBtn > 1
 
     return (
         <div className={`pagination`}>
@@ -89,10 +89,10 @@ export function StoriesPaginate(props) {
                 <React.Fragment>
                     <Link 
                         to={storiesURL}
-                        onClick={handleFirstPageNumSelect}
-                        className={`pagin-numbers ${pageNum === firstPageNum ? 'pagin-num-selected' : ''}`}
+                        onClick={handleFirstPageSelect}
+                        className={`pagin-numbers ${pageNum === firstPage ? 'pagin-num-selected' : ''}`}
                     >
-                        {firstPageNum}
+                        {firstPage}
                     </Link>
                     {
                         displayThreeDots.onStart && 
@@ -110,11 +110,11 @@ export function StoriesPaginate(props) {
                             <p className='three-dots'>...</p>
                     }
                     <Link 
-                        to={`${storiesURL}/page_${lastPageNum}`}
-                        onClick={handleLastPageNumSelect}
-                        className={`pagin-numbers ${pageNum === lastPageNum ? 'pagin-num-selected' : ''}`}
+                        to={`${storiesURL}/page_${lastPage}`}
+                        onClick={handleLastPageSelect}
+                        className={`pagin-numbers ${pageNum === lastPage ? 'pagin-num-selected' : ''}`}
                     >
-                        {lastPageNum}
+                        {lastPage}
                     </Link>
                 </React.Fragment>
             }
