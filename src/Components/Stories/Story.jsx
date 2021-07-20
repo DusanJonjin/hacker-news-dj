@@ -12,6 +12,7 @@ import { getItem } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
 import { handleDomainFromUrl } from '../../Utilities/helperFunctions';
 import { Link } from 'react-router-dom';
+import '../../Styles/Stories/Story.css';
 
 
 export function Story({ storyID, storyNum, pageNum, storiesUrl }) {

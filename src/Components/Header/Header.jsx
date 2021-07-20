@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Navbar } from './Navbar';
+import '../../Styles/Header/Header.css';
 
 export function Header() {
 

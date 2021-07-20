@@ -1,6 +1,7 @@
 import { pathsAndApis } from '../../Utilities/paths&apisData';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import '../../Styles/Header/Navbar.css';
 
 export function Navbar({ sideMenuOpen, closeSideMenu }) {
 

@@ -1,4 +1,5 @@
 import { Story } from './Story';
+import '../../Styles/Stories/StoriesList.css';
 
 export function StoriesList({ storiesIDs, pageNum, storiesPerPage, storiesURL }) {
 

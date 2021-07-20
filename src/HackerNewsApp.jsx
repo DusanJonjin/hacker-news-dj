@@ -3,6 +3,7 @@ import { Stories } from './Components/Stories/Stories';
 import { Comments } from './Components/Comments/Comments';
 import { pathsAndApis } from './Utilities/paths&apisData';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import './Styles/HackerNewsApp.css';
 
 export function HackerNewsApp() {
 
