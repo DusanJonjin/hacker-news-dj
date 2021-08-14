@@ -56,7 +56,7 @@
     margin: 0;
 }
 
-@media only screen and (min-width: 1344px) {
+@media only screen and (min-width: 670px) {
     .pagin-numbers {
         font-size: 18px;
         width: 40px;

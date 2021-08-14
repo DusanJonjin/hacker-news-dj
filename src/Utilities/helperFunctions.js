@@ -1,4 +1,4 @@
-export const handleDomainFromUrl = url => {
+export const getDomainFromUrl = url => {
     //if there is no url the story comes from hackernews website:
     if (!url) return 'news.ycombinator.com';
     //Match the values between http(s) and the first next slash(/)
@@ -42,4 +42,10 @@ export const calculateTimeAgo = storyTime => {
     if (minutesAgo < 60) return singularOrNot(minutesAgo, 'minute');
     if (hoursAgo < 24) return singularOrNot(hoursAgo, 'hour');
     else return singularOrNot(daysAgo, 'day');
+};
+
+export const themedClass = (className, dark=false, modern=false) => {
+    const darkTheme = dark ? `dark-${className}` : '';
+    const modernTheme = modern ? `modern-${className}` : '';
+    return `${className} ${darkTheme} ${modernTheme}`
 };

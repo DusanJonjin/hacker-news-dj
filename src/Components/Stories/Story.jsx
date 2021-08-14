@@ -10,12 +10,14 @@ import {
 import { FakeStory } from '../- Placeholders -/FakeStory';
 import { getItem } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
-import { handleDomainFromUrl } from '../../Utilities/helperFunctions';
+import { getDomainFromUrl, themedClass } from '../../Utilities/helperFunctions';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../../Styles/Stories/Story.css';
 
-
-export function Story({ storyID, storyNum, pageNum, storiesUrl }) {
+export function Story({ storyID, storyNum, pageNum, storiesURL }) {
+    
+    const { dark, modern } = useSelector(state => state.theme);
 
     const [story, setStory] = useState({status: 'isLoading', item: {}});
 
@@ -29,44 +31,50 @@ export function Story({ storyID, storyNum, pageNum, storiesUrl }) {
 
     const { status, item } = story;
 
-    if (!item) return <FakeStory />
+    if (!item) return <FakeStory dark={dark} modern={modern}/>
 
     const storyCommentsLink = {
-        pathname: pageNum === 1 ? `${storiesUrl}/itemId=${item.id}` : `${storiesUrl}/page_${pageNum}/itemId=${item.id}`
+        pathname: pageNum === 1 ? `${storiesURL}/itemId=${item.id}` : `${storiesURL}/page_${pageNum}/itemId=${item.id}`
     }
 
-    const domain = handleDomainFromUrl(item.url);
+    const domain = getDomainFromUrl(item.url);
+
+    const noComments = item.descendants < 1 || !item.descendants;
 
     return (
-        status === 'isLoading' ? <FakeStory /> :
-            <article className={`story`}>
-                <p className={`story-num`}>
-                    {storyNum}
+        status === 'isLoading' ? <FakeStory dark={dark} modern={modern}/> :
+            <article className={themedClass('story', dark, modern)}>
+                <p className={themedClass('story-num', dark, modern)}>
+                    {storyNum}{!modern && '.'}
                 </p>
-                <div className={`story-top-wrap`}>
+                <div className={themedClass('story-top-wrap', dark, modern)}>
                     <Title 
                         storyUrl={item.url}
                         title={item.title}
+                        dark={dark}
                     />
-                    <StorysDomain domain={domain} />             
+                    <StorysDomain 
+                        domain={domain} 
+                        dark={dark} 
+                        modern={modern}
+                    />             
                 </div> 
-                <div className={`story-bottom-wrap`}>
-                    <div className={`small-wrap-one`}>
-                        <Score score={item.score}/>
-                        <User user={item.by}
-                            byWord='by:'
+                <div className={themedClass('story-bottom-wrap', dark, modern)}>
+                    <Score score={item.score}/>
+                    <User user={item.by}
+                        byWord='by:'
+                    />         
+                    <TimeAgo time={item.time} />                  
+                    <Link 
+                        to={storyCommentsLink} 
+                        className={`story-comments-link ${noComments ? 'link-disabled' : '' }`}
+                    >
+                        <CommentsCount 
+                            descendants={item.descendants}
+                            dark={dark}
+                            modern={modern}
                         />
-                    </div>              
-                    <div className={`small-wrap-two`}>
-                        <TimeAgo time={item.time} />                  
-                        <Link 
-                            to={storyCommentsLink} 
-                            className={`story-comments-link`}>
-                            <CommentsCount 
-                                descendants={item.descendants}
-                            />
-                        </Link>
-                    </div>
+                    </Link>
                 </div>           
             </article>
     )

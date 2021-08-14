@@ -21,7 +21,7 @@ export function Stories({ storiesApiName }) {
     const [storiesObj, setStoriesObj] = useState(initialStoriesObj);
 
     // eslint-disable-next-line no-unused-vars
-    const [storiesPerPage, setStoriesPerPage] = useState(20);
+    const [storiesPerPage, setStoriesPerPage] = useState(30);
 
     const [paginateMidBtns, setPaginateMidBtns] = useState([]);
 
@@ -56,7 +56,7 @@ export function Stories({ storiesApiName }) {
         // If a user quickly clicks on a paginate button and then on some nav link:
         return () => abortController.abort();     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageNum, storiesApiName]);
+    }, [pageNum, storiesApiName, storiesPerPage]);
 
     const { status, ids, count } = storiesObj;
 
@@ -100,5 +100,5 @@ export function Stories({ storiesApiName }) {
                 }[status]
             }
         </section>
-    )
+    );
 }

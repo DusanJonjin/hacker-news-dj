@@ -1,37 +1,44 @@
 import { useState } from 'react';
 import { Navbar } from './Navbar';
+import { ThemesBar } from './ThemesBar';
+import { useSelector } from 'react-redux';
+import { themedClass } from '../../Utilities/helperFunctions';
 import '../../Styles/Header/Header.css';
 
 export function Header() {
 
-    const [sideMenuOpen, setSideMenuOpen] = useState(false);
+    const { dark, modern } = useSelector(state => state.theme);
 
-    const handleSideMenuOpen = () => {
-        setSideMenuOpen(prevSideMenuOpen => !prevSideMenuOpen);
+    const [sideMenu, setSideMenu] = useState(false);
+
+    const toggleSideMenu = () => {
+        setSideMenu(prevSideMenu => !prevSideMenu);
     }
 
     const closeSideMenu = () => {
-        setSideMenuOpen(false);
+        setSideMenu(false);
     }
 
     return (
-        <header className={`app-header`}>
+        <header className={themedClass('app-header', dark)}>
             <div id='logo-wrapper'>
                 <img src={require('../../Images/hn-logo.png').default}
                      alt='hacker-news-custom-logo'
                 />
                 <h3>Hacker News App</h3>
             </div>
-            <Navbar sideMenuOpen={sideMenuOpen}
-                    closeSideMenu={closeSideMenu}
+            <Navbar 
+                sideMenu={sideMenu}
+                closeSideMenu={closeSideMenu}
+                dark={dark}
             />
-            <div className='theme-toggle-wrap' >
-                <div className={`theme-toggle-bar `}
-                >                 
-                </div>
-            </div>
-            <div className='hamburger-wrap' onClick={() => handleSideMenuOpen()}>
-                <div className={`hamburger ${sideMenuOpen ? 'menu-open' : ''}`}></div>
+            <ThemesBar 
+                sideMenu={sideMenu} 
+                dark={dark} 
+                modern={modern}
+            />
+            <div className='hamburger-wrap' onClick={() => toggleSideMenu()}>
+                <div className={`${themedClass('hamburger', dark)} ${sideMenu ? 'hamb-open' : ''}`}></div>
             </div>
         </header>
     )

@@ -1,4 +1,6 @@
-export function Title({ storyUrl, title }) {
+import { themedClass } from "../../Utilities/helperFunctions";
+
+export function Title({ storyUrl, title, dark }) {
 
     return (
         <h2>
@@ -6,7 +8,7 @@ export function Title({ storyUrl, title }) {
                 href={storyUrl} 
                 target='_blank' 
                 rel='noopener noreferrer'
-                className={`title-link`}
+                className={themedClass('title-link', dark)}
             >
             {title}
             </a>

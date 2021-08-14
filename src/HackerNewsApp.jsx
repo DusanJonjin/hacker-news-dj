@@ -3,17 +3,21 @@ import { Stories } from './Components/Stories/Stories';
 import { Comments } from './Components/Comments/Comments';
 import { pathsAndApis } from './Utilities/paths&apisData';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { themedClass } from './Utilities/helperFunctions';
+import { useSelector } from 'react-redux';
 import './Styles/HackerNewsApp.css';
 
 export function HackerNewsApp() {
 
-    const storiesRoutes = pathsAndApis.reduce((acc, obj, i) => 
-    !obj.path.includes('comments') ?
+    const { dark } = useSelector(state => state.theme);
+
+    const storiesRoutes = pathsAndApis.reduce((acc, { path, api }, i) => 
+    !path.includes('comments') ?
         [
             ...acc,
-            <Route key={i} path={obj.path}>
+            <Route key={i} path={path}>
                 <Stories 
-                    storiesApiName={obj.api}
+                    storiesApiName={api}
                 />
             </Route>
         ]
@@ -21,7 +25,7 @@ export function HackerNewsApp() {
     , []);
 
     return (
-        <div className={`app-wrapper`}>
+        <div className={themedClass('app-wrapper', dark)}>
             <Header />
             <main>
                 <Switch>
@@ -37,7 +41,7 @@ export function HackerNewsApp() {
                     </Route>
                 </Switch>
             </main>
-            <footer className={`app-footer`}>
+            <footer className={themedClass('app-footer', dark)}>
                 © {new Date().getFullYear()}. Hacker News App by D.J.
             </footer>      
         </div>

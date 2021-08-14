@@ -1,8 +1,8 @@
+import '../../Styles/- Placeholders -/FakeComment.css';
+
 export function FakeComment() {
-    
+
     return (
-        <article className='fake-comment'>
-            
-        </article>
+        <div className={`fake-comment`}> </div>
     )
 }

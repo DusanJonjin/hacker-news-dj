@@ -1,20 +1,27 @@
+:root {
+    --dark-story-top-color: rgb(37, 37, 52);
+    --main-transition: .3s ease;
+    --story-text-color: rgb(65, 65, 70);
+    --dark-story-text-color: rgb(200, 200, 202);
+    --fake-top-color: rgb(143, 190, 235);
+}
+
 body {
-    background-color: rgb(243, 243, 244);
-    transition: background-color .4s ease;
     margin: 0;
 }
 
 .app-wrapper {
     background-color: rgb(243, 243, 244);
-    transition: background-color .5s ease;
+    transition: var(--main-transition);
+    min-height: 100vh;
 }
 
-.app-dark {
-    background-color: rgb(30, 30, 31);
+.dark-app-wrapper {
+    background-color: rgb(20, 20, 31);
 }
 
 main {
-    margin: 0 10px;
+    margin: 0;
     font-family: 'Tahoma', sans-serif;
 }
 
@@ -30,10 +37,10 @@ main {
     padding: 2em 0 3em 0;
     font-size: 16px;
     font-style: italic;
-    color: rgb(115, 115, 117);
-    transition: color .5s ease;
+    color: rgb(100, 100, 103);
+    transition: var(--main-transition);
 }
 
-.foot-dark {
-    color: rgb(150, 150, 150)
+.dark-app-footer {
+    color: rgb(170, 170, 173)
 }

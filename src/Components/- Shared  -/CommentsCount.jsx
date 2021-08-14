@@ -1,13 +1,15 @@
-export function CommentsCount({ descendants, darkTheme }) {
+import { themedClass } from "../../Utilities/helperFunctions";
+
+export function CommentsCount({ descendants, dark, modern }) {
 
     if (descendants < 1 || !descendants) return (
-        <p className={`no-comments`}>
+        <p className={themedClass('no-comments', dark, modern)}>
             no comments
         </p>
     );
 
     return (
-        <p className={`comments-exist`}>
+        <p>
             {`${descendants} comment${descendants > 1 ? 's' : ''}`}
         </p>
     );

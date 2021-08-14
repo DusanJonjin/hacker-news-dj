@@ -23,11 +23,9 @@ export function StoriesPaginate(props) {
 
     const midBtnsCount = midBtns.length;
 
-    const initialBtnsArr = Array.from(
-        {length: midBtnsCount}, (_ ,i) => i + 2
-    );
-
-    const handleFirstPageSelect = () => handleMidBtns(initialBtnsArr);
+    const handleFirstPageSelect = () => {
+        handleMidBtns(Array.from({length: midBtnsCount}, (_ ,i) => i + 2));
+    };
 
     const handleLastPageSelect = () => {
         handleMidBtns(
