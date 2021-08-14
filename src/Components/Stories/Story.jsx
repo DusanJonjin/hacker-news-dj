@@ -6,7 +6,7 @@ import {
     User,
     TimeAgo,
     CommentsCount
-} from '../- Shared  -/AllSharedComponents';
+} from '../- Shared -/AllSharedComponents';
 import { FakeStory } from '../- Placeholders -/FakeStory';
 import { getItem } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
