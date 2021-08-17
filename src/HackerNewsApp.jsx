@@ -11,6 +11,10 @@ export function HackerNewsApp() {
 
     const { dark } = useSelector(state => state.theme);
 
+    /* Make an Route array of Stories components only. This way the component unmounts
+    every time the Route is changed. If we simply put the same component within Route
+    (with different paths - which recieves different props) inside Switch, that 
+    component will not unmount on Route change between them, it will always be mounted: */
     const storiesRoutes = pathsAndApis.reduce((acc, { path, api }, i) => 
     !path.includes('comments') ?
         [
@@ -31,7 +35,7 @@ export function HackerNewsApp() {
                 <Switch>
                     <Redirect exact from='/' to='/top' />
                     {storiesRoutes}
-                    <Route>
+                    <Route path='/comments'>
                         <Comments />
                     </Route>
                     <Route>

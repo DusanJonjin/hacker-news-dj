@@ -182,7 +182,7 @@ two classes are active together: */
     margin: 4px 7px 4px 0;
     padding: 4px 8px 3px 8px;
     border-radius: 12px;
-    background: rgb(235, 252, 255);
+    background: rgb(236, 252, 255);
     transition: var(--main-transition);
     border: none;
 }

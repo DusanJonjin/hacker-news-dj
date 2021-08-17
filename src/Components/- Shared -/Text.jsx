@@ -1,8 +1,10 @@
-export function Text() {
+export function Text({ text }) {
     
+    const createMarkup = text => {
+        return {__html: `${text}`}
+    };
+
     return (
-        <p>
-            
-        </p>
-    )
+        <p dangerouslySetInnerHTML={createMarkup(text)} />
+    );
 }

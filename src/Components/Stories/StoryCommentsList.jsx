@@ -1,10 +1,16 @@
-import { StoryComment } from './StoryComment'
+import { StoryComment } from './StoryComment';
 
-export function StoryCommentsList() {
+export function StoryCommentsList({ commentsIDs }) {
     
+    const commentsList = commentsIDs.map(commentID => 
+        <li key={commentID} className='story-comments-li'>
+            <StoryComment commentID={commentID} />
+        </li>
+    );
+
     return (
-        <ul>
-            <StoryComment />
+        <ul className='story-comments-ul'>
+            {commentsList}
         </ul>
-    )
+    );
 }

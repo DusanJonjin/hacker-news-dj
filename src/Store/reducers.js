@@ -16,8 +16,58 @@ const themeReducer = (state={dark: false, modern: false}, action) => {
 }
 
 
+const commentsReducer = (state=[], action) => {
+    switch (action.type) {
+        case 'GET_COMMENT':
+            const comment = action.payload;
+            const insertComment = comment.item ? [...state, comment] : state;
+            return insertComment;
+        case 'CLEAR_COMMENTS': 
+            const clearAllComments = [];
+            return clearAllComments;
+        case 'GET_REPLIES_COUNT':
+            const commentID = action.payload;
+            const calcRepliesCount = (commentID, accum) => {
+                const count = state.reduce((acc, comment) => 
+                    comment.item.parent === commentID ? calcRepliesCount(comment.item.id, acc + 1) : acc
+                , accum);
+                return count;
+            }
+            const repliesCount = calcRepliesCount(commentID, 1);
+            const addRepliesCount = state.map(comment =>
+                comment.item.id === commentID ? {...comment, repliesCount} : comment
+            );
+            return addRepliesCount;
+        default: return state;
+    }
+}
+
+const collapsedCommentsReducer = (state=[], action) => {
+    switch (action.type) {
+        case 'COLLAPSE_EXPAND_COMMENT': 
+            const commentID = action.payload;
+            const addRemoveCollapsed = commentID => {
+                if (!state.includes(commentID)) {
+                    const addCollapsed = [...state, commentID];
+                    return addCollapsed; 
+                }
+                else {
+                    const removeCollapsed = state.filter(id => id !== commentID);
+                    return removeCollapsed;            
+                }
+            }
+            return addRemoveCollapsed(commentID);
+        case 'CLEAR_COLLAPSED_COMMENTS':
+            const clearAllCollapsed = [];
+            return clearAllCollapsed;
+        default: return state;
+    }
+}
+
 export const reducers = combineReducers(
     {
-        theme: themeReducer
+        theme: themeReducer,
+        comments: commentsReducer,
+        collapsedComments: collapsedCommentsReducer
     }
 );

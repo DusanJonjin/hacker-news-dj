@@ -16,3 +16,38 @@ export const selectClassicTheme = () => {
         type: 'SELECT_CLASSIC_THEME'
     }
 }
+
+// COMMENTS
+export const getComment = comment => {
+    return {
+        type: 'GET_COMMENT',
+        payload: comment
+    }
+}
+
+export const clearComments = () => {
+    return {
+        type: 'CLEAR_COMMENTS'
+    }
+}
+
+export const getRepliesCount = commentID => {
+    return {
+        type: 'GET_REPLIES_COUNT',
+        payload: commentID
+    }
+}
+
+// COLLAPSED COMMENTS
+export const collapseExpandComment = commentID => {
+    return {
+        type: 'COLLAPSE_EXPAND_COMMENT',
+        payload: commentID
+    }
+}
+
+export const clearCollapsedComments = () => {
+    return {
+        type: 'CLEAR_COLLAPSED_COMMENTS'
+    }
+}
