@@ -1,0 +1,27 @@
+.story-comments-ul {
+    padding: 10px 0 10px 0;
+    margin: 0;
+    transition: var(--main-transition);
+}
+
+.modern-story-comments-ul {
+    padding: 0 0 10px 0;
+    background-color: rgb(174, 236, 255);
+}
+
+.dark-story-comments-ul.modern-story-comments-ul {
+    background-color: var(--dark-story-top-color);
+}
+
+.story-comments-li {
+    list-style: none;
+    margin: 0 6px; 
+    padding: 0;
+}
+
+@media only screen and (min-width: 670px) {
+
+    .story-comments-li {
+        margin: 0 10px;
+    }
+}

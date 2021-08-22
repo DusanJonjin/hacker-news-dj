@@ -5,14 +5,22 @@ import { StoryDetails } from './StoryDetails';
 import { StoryCommentsList } from './StoryCommentsList';
 import { getItem } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
+import { themedClass } from '../../Utilities/helperFunctions';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearComments, clearCollapsedComments } from '../../Store/actions';
 import { useLocation } from 'react-router-dom';
+import '../../Styles/Stories/StoryComments.css';
 
 
 export function StoryComments() {
 
+    const dispatch = useDispatch();
+
+    const { dark, modern } = useSelector(state => state.theme);
+
     const { pathname } = useLocation();
 
-    const storyId = pathname.slice(pathname.indexOf('=') + 1);
+    const storyId = parseInt(pathname.slice(pathname.indexOf('=') + 1));
 
     const [story, setStory] = useState({status: 'isLoading', item: {}});
 
@@ -24,41 +32,50 @@ export function StoryComments() {
         );
         return () => {
             abortController.abort();
+            dispatch(clearComments());
+            dispatch(clearCollapsedComments());
         }       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storyId]);
 
     const { status, item } = story;
 
-    if(!item) return <p>No story</p>
+    if(!item) return <p>Story doesn't exist</p>;
 
     return (
-        <section className='story-comments-wrap'>
+        <section className={themedClass('story-comments-wrap', dark, modern)}>
             {
                 {
                     'isLoading': 
                         <React.Fragment>
-                            <p className={`fake-story-comm-details`}> </p>
+                            <p className={themedClass('fake-story-comm-details', dark, modern)}> </p>
                         </React.Fragment>,
                     'error': 
                         <p className='error'>
                             Network error. Refresh the browser, or try again later.
                         </p>,
                     'isLoaded':
-                        <div className={`details-comments-wrap`}>
+                        <div className={themedClass('details-comments-wrap', dark, modern)}>
                             <StoryDetails 
                                 storyItem={item}
                                 
                             />
                             {item.text &&
-                                <div className='details-comments-text'>
+                                <div className={themedClass('details-comments-text', dark, modern)}>
                                     <Text text={item.text} />
                                 </div>
                             }
                             <CommentsCount 
                                 descendants={item.descendants} 
+                                clsName='details-comm-count'
                             />
-                            <StoryCommentsList commentsIDs={item.kids} />            
+                            {item.kids && 
+                                <StoryCommentsList 
+                                    commentsIDs={item.kids}
+                                    dark={dark}
+                                    modern={modern}
+                                />            
+                            }
                         </div>
                 }[status]
             }

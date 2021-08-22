@@ -1,9 +1,12 @@
 :root {
+    --classic-main-width: 1550px;
+    --classic-main-background: rgb(217, 244, 255);
     --dark-story-top-color: rgb(37, 37, 52);
-    --main-transition: .3s ease;
     --story-text-color: rgb(65, 65, 70);
     --dark-story-text-color: rgb(200, 200, 202);
+    --modern-story-background: rgb(168, 230, 255);
     --fake-top-color: rgb(143, 190, 235);
+    --main-transition: .3s ease;
 }
 
 body {

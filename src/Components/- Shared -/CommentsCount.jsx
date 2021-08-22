@@ -1,16 +1,27 @@
 import { themedClass } from "../../Utilities/helperFunctions";
+import { useSelector } from "react-redux";
 
-export function CommentsCount({ descendants, dark, modern }) {
+export function CommentsCount({ descendants, linkDisabled=false, clsName='' }) {
 
-    if (descendants < 1 || !descendants) return (
+    const { dark, modern } = useSelector(state => state.theme);
+
+    if (linkDisabled) return (
         <p className={themedClass('no-comments', dark, modern)}>
             no comments
         </p>
     );
 
+    const commentsCount = descendants => {
+        if (descendants > 0) {
+            if (descendants === 1) return `1 comment`;
+            return `${descendants} comments`
+        }
+        return 'no comments';
+    }
+
     return (
-        <p>
-            {`${descendants} comment${descendants > 1 ? 's' : ''}`}
+        <p className={clsName}>
+            {commentsCount(descendants)}
         </p>
     );
 }

@@ -5,6 +5,7 @@ import { getItem } from '../../API/ApiCalls';
 import { themedClass } from '../../Utilities/helperFunctions';
 import { useSelector, useDispatch } from 'react-redux';
 import { getComment, getRepliesCount, collapseExpandComment } from '../../Store/actions';
+import '../../Styles/Stories/StoryComment.css';
 
 export function StoryComment({ commentID }) {
 
@@ -33,8 +34,8 @@ export function StoryComment({ commentID }) {
     if (!item || item.dead || item.deleted) return null;
     
     return (
-        status && status === 'isLoaded' ?
-            <article className={themedClass('story-comment', dark, modern)}>
+        status && status === 'isLoaded' 
+        ?   <article className={themedClass('story-comment', dark, modern)}>
                 <div className={themedClass('story-comment-top-wrap', dark, modern)}>
                     <User user={item.by} />&nbsp;
                     <TimeAgo time={item.time}/>&ensp;

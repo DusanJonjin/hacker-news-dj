@@ -1,8 +1,8 @@
 .stories-ol, .fake-stories-ul {
-    max-width: 1550px;
+    max-width: var(--classic-main-width);
     margin: 0 auto;
     padding: 10px 5px;
-    background: rgb(217, 244, 255);
+    background: var(--classic-main-background);
     list-style-type: none;
     transition: var(--main-transition);
 }

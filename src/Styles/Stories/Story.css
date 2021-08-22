@@ -8,9 +8,9 @@
 
 .modern-story {
     display: block;
-    background: rgb(168, 230, 255);
+    background: var(--modern-story-background);
     border-radius: 6px;
-    border: 1px solid rgb(168, 230, 255);
+    border: 1px solid var(--modern-story-background);
     padding: 0 10px;
     margin: 0 5px;
 }
@@ -67,7 +67,8 @@ two classes are active together: */
     text-align: right;
     margin: 2px 5px 0 0;
     padding: 0 0;
-    color: var(--story-text-color)
+    color: var(--story-text-color);
+    transition: var(--main-transition);
 }
 
 .modern-story-num {
@@ -100,15 +101,16 @@ two classes are active together: */
     color: rgb(35, 137, 255);
 }
 
-.domain {
+.story-top-wrap > .domain {
     display: inline-block;
     font-size: 13px;
     color: var(--story-text-color);
     padding: 0;
     margin: 0 0 0 0;
+    transition: var(--main-transition);
 }
 
-.modern-domain {
+.modern-story-top-wrap > .domain {
     display: block;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -119,7 +121,7 @@ two classes are active together: */
     transition: var(--main-transition);
 }
 
-.dark-domain {
+.dark-story-top-wrap > .domain {
     color: rgb(215, 215, 217)
 }
 /*** end of story title and short url top part ***/
@@ -143,6 +145,7 @@ two classes are active together: */
     color: var(--story-text-color);
     padding: 0;
     margin: 2px 5px 2px 0;
+    transition: var(--main-transition);
 }
 
 .dark-story-bottom-wrap p {
@@ -240,7 +243,7 @@ two classes are active together: */
         font-size: 16px;
     }
 
-    .modern-domain {
+    .modern-story-top-wrap > .domain {
         font-size: 14px;
         margin: 1px 0 0 0;
     }

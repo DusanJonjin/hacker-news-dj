@@ -1,0 +1,126 @@
+.story-comm-details {
+    padding: 10px 10px 5px 10px;
+    transition: var(--main-transition);
+}
+
+.modern-story-comm-details {
+    background-color: rgb(136, 227, 255);
+}
+
+.dark-story-comm-details {
+    background-color: transparent;
+}
+
+.modern-story-comm-details.dark-story-comm-details {
+    background-color: rgb(27, 27, 41);
+}
+
+/*** Details top wrap ***/
+.story-comm-details-top-wrap, 
+.story-comm-details-bot-wrap {
+    padding: 3px 5px;
+    transition: var(--main-transition);
+}
+
+.modern-story-comm-details-top-wrap {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.story-comm-details-top-wrap > h2 {
+    font-size: 16px;
+    display: inline;
+    margin: 0 5px 0 0;
+    transition: var(--main-transition);
+}
+
+.modern-story-comm-details-top-wrap > h2 {
+    display: block;
+    font-size: 17px;
+    margin: 0 5px;
+    padding: 5px 0 5px 0;
+}
+
+.story-comm-details-top-wrap > .domain {
+    display: inline-block;
+    font-weight: normal;
+    color: var(--story-text-color);
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    transition: var(--main-transition);
+}
+
+.modern-story-comm-details-top-wrap > .domain {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(85, 85, 88);
+    display: block;
+    padding: 5px 5px;
+}
+
+.dark-story-comm-details-top-wrap > .domain {
+    color: var(--dark-story-text-color);
+}
+/*** End of details top wrap ***/
+
+/*** Details bottom wrap ***/
+.story-comm-details-bot-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Roboto',sans-serif;
+    transition: var(--main-transition);
+}
+
+.modern-story-comm-details-bot-wrap {
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px;
+}
+
+.story-comm-details-bot-wrap > p {
+    font-size: 14px;
+    color: var(--story-text-color);
+    padding: 0 6px 0 0;
+    margin: 0;
+    transition: var(--main-transition);
+}
+
+.modern-story-comm-details-bot-wrap > p {
+    font-size: 15px;
+}
+
+.dark-story-comm-details-bot-wrap > p {
+    color: var(--dark-story-text-color);
+}
+/*** End of details bottom wrap ***/
+
+@media only screen and (min-width: 670px) {
+
+    .story-comm-details-top-wrap, 
+    .story-comm-details-bot-wrap {
+        padding: 3px 10px;
+    }
+
+    .story-comm-details-top-wrap > h2 {
+        font-size: 17px;
+    }
+
+    .modern-story-comm-details-top-wrap > h2 {
+        font-size: 19px;
+        padding: 10px 0 5px 0;
+    }
+
+    .story-comm-details-top-wrap > .domain {
+        font-size: 16px;
+    }
+    
+    .modern-story-comm-details-top-wrap > .domain {
+        font-size: 17px;
+        padding: 5px 5px;
+    }
+    
+    .story-comm-details-bot-wrap > p {
+        font-size: 15px;
+    }
+}

@@ -6,8 +6,8 @@ import {
     TimeAgo
 } from '../- Shared -/AllSharedComponents';
 import { useSelector } from 'react-redux';
-import { getDomainFromUrl } from '../../Utilities/helperFunctions';
-//import './Styles/StoryDetails.css';
+import { getDomainFromUrl, themedClass } from '../../Utilities/helperFunctions';
+import '../../Styles/Stories/StoryDetails.css';
 
 export function StoryDetails({ storyItem }) {
 
@@ -24,24 +24,24 @@ export function StoryDetails({ storyItem }) {
     const domain = getDomainFromUrl(url);
 
     return (
-        <article className={`story-comm-details-box`}>
-            <Title 
-                storyUrl={url}
-                title={title}
-                dark={dark}
-            />
-            <StorysDomain
-                domain={domain}
-                darkTheme={dark}
-            />
-            <div className={`story-comm-details-bot-wrap`}>
-                <div>
-                    <Score score={score}/>&ensp;|&ensp;
-                    <User 
-                        user={by}
-                        byWord='by:'
-                    />
-                </div>
+        <article className={themedClass('story-comm-details', dark, modern)}>
+            <div className={themedClass('story-comm-details-top-wrap', dark, modern)}>
+                <Title 
+                    storyUrl={url}
+                    title={title}
+                    dark={dark}
+                />
+                <StorysDomain
+                    domain={domain}
+                    modern={modern}
+                />
+            </div>
+            <div className={themedClass('story-comm-details-bot-wrap', dark, modern)}>
+                <Score score={score} />
+                <User 
+                    user={by}
+                    byWord='by:'
+                />
                 <TimeAgo time={time}/>
             </div>
         </article>

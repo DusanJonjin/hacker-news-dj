@@ -39,7 +39,7 @@ export function Story({ storyID, storyNum, pageNum, storiesURL }) {
 
     const domain = getDomainFromUrl(item.url);
 
-    const noComments = item.descendants < 1 || !item.descendants;
+    const linkDisabled = !item.descendants && !item.text;
 
     return (
         status === 'isLoading' ? <FakeStory dark={dark} modern={modern}/> :
@@ -67,12 +67,11 @@ export function Story({ storyID, storyNum, pageNum, storiesURL }) {
                     <TimeAgo time={item.time} />                  
                     <Link 
                         to={storyCommentsLink} 
-                        className={`story-comments-link ${noComments ? 'link-disabled' : '' }`}
+                        className={`story-comments-link ${linkDisabled ? 'link-disabled' : '' }`}
                     >
                         <CommentsCount 
                             descendants={item.descendants}
-                            dark={dark}
-                            modern={modern}
+                            linkDisabled={linkDisabled}
                         />
                     </Link>
                 </div>           

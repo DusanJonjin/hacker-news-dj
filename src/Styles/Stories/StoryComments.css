@@ -1,0 +1,122 @@
+.story-comments-wrap {
+    max-width: var(--classic-main-width);
+    margin: 0 auto;
+    padding: 0;
+    background: var(--classic-main-background);
+    transition: var(--main-transition);
+}
+
+.modern-story-comments-wrap {
+    max-width: 1400px;
+    background-color: var(--classic-main-background);
+}
+
+.dark-story-comments-wrap {
+    background-color: rgb(23, 23, 34);
+}
+
+.details-comments-wrap {
+    font-family: 'Open-sans', sans-serif;
+    transition: var(--main-transition);
+}
+
+.details-comments-wrap > .details-comm-count {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(65, 93, 119);
+    margin: 0;
+    padding: 10px 15px 5px 15px;
+    text-decoration: underline;
+    pointer-events: none;
+    transition: var(--main-transition);
+}
+
+.modern-details-comments-wrap > .details-comm-count {
+    font-size: 17px;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+    background-color: rgb(174, 236, 255);
+}
+
+.dark-details-comments-wrap > .details-comm-count {
+    color:rgb(165, 174, 185);;
+    background-color: transparent;
+}
+
+.dark-details-comments-wrap.modern-details-comments-wrap > .details-comm-count {
+    background-color: var(--dark-story-top-color);
+}
+
+.details-comments-text {
+    font-size: 15px;
+    color: rgb(105, 105, 110);
+    background: rgb(198, 242, 255);
+    padding: 0 15px;
+    overflow-x: auto;
+    word-break: break-word;
+    transition: var(--main-transition);
+}
+
+.modern-details-comments-text {
+    padding: 5px 17px;
+}
+
+.dark-details-comments-text {
+    background-color: rgb(27, 27, 41);
+    color: rgb(160, 160, 165);
+}
+
+.modern-details-comments-text.dark-details-comments-text {
+    background-color: rgb(23, 23, 34);;
+}
+
+.fake-story-comm-details {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 115px;
+    background-color: var(--classic-main-background);
+    transition: var(--main-transition);
+}
+
+.modern-fake-story-comm-details {
+    background-color: rgb(136, 227, 255);
+    height: 125px;
+}
+
+.dark-fake-story-comm-details {
+    background-color: transparent;
+}
+
+.modern-fake-story-comm-details.dark-fake-story-comm-details {
+    background-color: rgb(27, 27, 41);
+}
+
+@media only screen and (min-width: 670px) {
+
+    .details-comments-wrap > .details-comm-count {
+        font-size: 16px;
+        padding: 15px 15px 10px 20px;
+    }
+
+    .modern-details-comments-wrap > .details-comm-count {
+        font-size: 19px;
+        padding: 18px 15px;
+    }
+    
+    .details-comments-text {
+        padding: 5px 20px;
+    }
+
+    .modern-details-comments-text {
+        font-size: 16px;
+        padding: 15px 30px;
+    }
+
+    
+    .modern-fake-story-comm-details {
+        height: 130px;
+    }
+
+}
