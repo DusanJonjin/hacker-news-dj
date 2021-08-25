@@ -73,8 +73,9 @@
     }
 
     .modern-fake-comment {
-        width: 99.7%;
+        width: 99.4%;
         height: 140px;
+        margin: 0 auto 10px auto;
         position: relative;
     }
 }

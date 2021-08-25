@@ -1,4 +1,5 @@
-.story-comments-wrap {
+.story-comments-wrap,
+.comments {
     max-width: var(--classic-main-width);
     margin: 0 auto;
     padding: 0;
@@ -6,12 +7,13 @@
     transition: var(--main-transition);
 }
 
-.modern-story-comments-wrap {
+.modern-story-comments-wrap,
+.modern-comments {
     max-width: 1400px;
-    background-color: var(--classic-main-background);
 }
 
-.dark-story-comments-wrap {
+.dark-story-comments-wrap,
+.dark-comments {
     background-color: rgb(23, 23, 34);
 }
 
@@ -68,7 +70,7 @@
 }
 
 .modern-details-comments-text.dark-details-comments-text {
-    background-color: rgb(23, 23, 34);;
+    background-color: rgb(23, 23, 34);
 }
 
 .fake-story-comm-details {

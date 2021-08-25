@@ -2,6 +2,8 @@ import { themedClass } from "../../Utilities/helperFunctions";
 
 export function Title({ storyUrl, title, dark }) {
 
+    if (!title) return <div className={themedClass('fake-title', dark)}></div>
+
     return (
         <h2>
             <a 

@@ -31,7 +31,7 @@ export function StoryComment({ commentID }) {
 
     const { status, item, repliesCount } = commentToDisplay;
 
-    if (!item || item.dead || item.deleted) return null;
+    if (!item || item.dead || item.deleted ) return null;
     
     return (
         status && status === 'isLoaded' 

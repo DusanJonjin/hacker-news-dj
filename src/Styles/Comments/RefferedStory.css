@@ -1,0 +1,13 @@
+.reffered-story > h2 {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.modern-reffered-story > h2 {
+    font-size: 16px;
+}
+
+@media only screen and (min-width: 670px) {
+    
+}

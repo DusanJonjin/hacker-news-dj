@@ -4,6 +4,7 @@ import { Comments } from './Components/Comments/Comments';
 import { pathsAndApis } from './Utilities/paths&apisData';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { themedClass } from './Utilities/helperFunctions';
+import { useScrollToTop } from './Hooks/ScrollToTop';
 import { useSelector } from 'react-redux';
 import './Styles/HackerNewsApp.css';
 
@@ -27,6 +28,8 @@ export function HackerNewsApp() {
         ]
         : acc
     , []);
+
+    useScrollToTop();
 
     return (
         <div className={themedClass('app-wrapper', dark)}>

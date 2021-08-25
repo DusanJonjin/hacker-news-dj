@@ -25,7 +25,7 @@ export function Header() {
                 <img src={require('../../Images/hn-logo.png').default}
                      alt='hacker-news-custom-logo'
                 />
-                <h3>Hacker News App</h3>
+                <h3>Hackr News App</h3>
             </div>
             <Navbar 
                 sideMenu={sideMenu}

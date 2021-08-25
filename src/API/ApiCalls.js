@@ -38,3 +38,21 @@ export const getItem = async (itemID, abortSignal) => {
         return {status: 'error'}
     }
 };
+
+// Async function to get the current largest item (either story or comment) ID:
+export const getMaxItem = async (abortSignal) => {
+    try {
+        const fetchMaxItemID = await fetch(
+            `${mainURL}/maxitem.json?print=pretty`,
+            {signal: abortSignal}
+        );
+        const maxItemID = await fetchMaxItemID.json();
+        //be carefull on the next line
+        return {status: 'isLoaded', maxItemID}
+    }
+
+    catch (err) {
+        if (err.name === 'AbortError') return {status: 'isLoading'};
+        return {status: 'error'}
+    }
+};
