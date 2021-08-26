@@ -1,14 +1,13 @@
 import React, {useState, useEffect}from 'react';
 import { Title } from '../- Shared -/Title';
 import { getItem } from '../../API/ApiCalls';
-import { themedClass } from '../../Utilities/helperFunctions';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
 import { useSelector } from 'react-redux';
 import '../../Styles/Comments/RefferedStory.css'
 
 export function ReferredStory({ parent }) {
 
-    const { dark, modern } = useSelector(state => state.theme); 
+    const { dark } = useSelector(state => state.theme); 
 
     const [story, setStory] = useState({status: 'isloading', item: {}});
 
