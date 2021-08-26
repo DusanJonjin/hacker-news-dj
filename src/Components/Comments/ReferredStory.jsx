@@ -26,9 +26,7 @@ export function ReferredStory({ parent }) {
 
     if (item.parent) return <ReferredStory parent={item.parent} />
 
-    return ( 
-        <div className={themedClass('reffered-story', dark, modern)} >   
+    return (   
             <Title storyUrl={item.url} title={item.title} dark={dark} />
-        </div> 
     );
 }

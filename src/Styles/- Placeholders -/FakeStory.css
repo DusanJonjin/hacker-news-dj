@@ -5,7 +5,7 @@
     padding: 0 0;
     margin: 0 0;
     border-radius: 4px;
-    background: rgb(168, 195, 204);
+    background: rgb(181, 210, 219);
 }
 
 .modern-fake-num {
@@ -19,7 +19,7 @@
 .fake-story-top {
     max-width: 93%;
     height: 42px;
-    background: rgb(161, 198, 230);;
+    background: rgb(178, 210, 238);
     border-radius: 4px;
     margin: 0 0 0 0;
     transition: var(--main-transition);
@@ -69,12 +69,12 @@
 }
 
 .dark-fake-story-top::after {
-    background: rgb(70, 106, 146);;
+    background: rgb(53, 80, 110);
 }
 
 .fake-story-bottom {
     grid-column: 2;
-    background: rgb(174, 202, 211);
+    background: rgb(181, 210, 219);
     max-width: 75%;
     height: 28px;
     margin: 2px 0;
