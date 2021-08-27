@@ -6,6 +6,7 @@
     top: 175%;
     right: 0;
     transition: .1s ease;
+    pointer-events: none;
 }
 
 .theme-sel-open {
@@ -87,5 +88,6 @@
     .theme-selection-wrap {
         position: static;
         opacity: 1;
+        pointer-events: initial;
     }
 }
