@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# Hacker news clone reader app 
+---
+This is the second time I've made this app, because I realized that it was a little bit slow (especially the loading of large number of comments was going very slow), and the information (stories or news) density on mobile view was too low - because you could see only two stories on the display shown at the same time, and you needed to scroll or slide a lot to get to the last story.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+So, because of the aforementioned reasons, I've decided to refactor my previous code (which is also available as a repository on my profile), and make the app run faster and add another view (theme), which is similar to the original classic **Hacker News** view, with more information density.
 
-## Available Scripts
+I'm still using the official [Hacker news API](https://github.com/HackerNews/API) to get the data (stories, comments, replies...) for the app.
 
-In the project directory, you can run:
+## Speeding up the app
+---
+To solve the first problem - speeding up or boosting the performance of the App, I had to change the approach of making API calls and storing and reading the response data.
+The problem was that I've structured my API calls so that the async functions (which is used to get the data), was called from inside main component's useEffect hook, and it was making API calls for all of the items (for the comments I had to do the recursion of the function to get all of the comments and their replies), got responses with data, and then when it's all finished they are saved in this main component's state from where they were passed down to the child components which read and displayed the data.
+This was not so big of a problem for the stories (news) page, because this component had to make twenty or thirty API calls, and the responses with data came fairly quickly. The problem was very obvious when story had a large number of comments (over 100). The larger the number, the loading of comments was progressively slower, because the function had to make a large number of API calls and wait for their responses so they could be saved in the main components state.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
