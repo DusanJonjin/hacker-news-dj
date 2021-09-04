@@ -50,7 +50,7 @@
 .hamburger::before {
     width: 35px;
     height: 3px;
-    background-color: rgb(27, 6, 2);
+    background-color: rgb(51, 12, 3);
     transition: .2s ease;
     border-radius: 5px;
 }
@@ -58,7 +58,7 @@
 .dark-hamburger,
 .dark-hamburger::after,
 .dark-hamburger::before {
-    background-color: rgb(238, 237, 237);
+    background-color: rgb(255, 204, 175);
 }
 
 .hamburger {

@@ -3,6 +3,8 @@ import { CommentsCount } from '../- Shared -/CommentsCount';
 import { Text } from '../- Shared -/Text';
 import { StoryDetails } from './StoryDetails';
 import { StoryCommentsList } from './StoryCommentsList';
+import { FakeStoryDetails } from '../- Placeholders -/FakeStoryDetails';
+import { FakeCommentsList } from '../- Placeholders -/FakeCommentsList';
 import { getItem } from '../../API/ApiCalls';
 import { usePreventSetStateOnUnmount } from '../../Hooks/PreventSetStateOnUnmount';
 import { themedClass } from '../../Utilities/helperFunctions';
@@ -48,7 +50,9 @@ export function StoryComments() {
                 {
                     'isLoading': 
                         <React.Fragment>
-                            <p className={themedClass('fake-story-comm-details', dark, modern)}> </p>
+                            <FakeStoryDetails dark={dark} modern={modern} />
+                            <div className={themedClass('fake-comments-count', dark, modern)}></div>
+                            <FakeCommentsList dark={dark} modern={modern} />
                         </React.Fragment>,
                     'error': 
                         <p className='error'>

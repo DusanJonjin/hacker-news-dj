@@ -80,6 +80,20 @@
     padding: 0 0 12px 0;
 }
 
+.story-comment-bot-wrap > p * {
+    word-wrap: break-all;
+    overflow: auto;
+}
+
+.story-comment-bot-wrap > p a {
+    text-decoration: none;
+    color: rgb(1, 26, 167);
+}
+
+.dark-story-comment-bot-wrap > p a {
+    color: rgb(110, 178, 255);
+}
+
 .modern-story-comment-bot-wrap > p {
     margin: 0 5px 0 0;
 }

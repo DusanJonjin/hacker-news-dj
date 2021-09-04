@@ -57,7 +57,11 @@ export function Comments() {
             {
                 {
                     'isLoading': 
-                        <FakeCommentsList />,
+                        <FakeCommentsList 
+                            commentsCount={itemsIdCount}
+                            dark={dark} 
+                            modern={modern} 
+                        />,
                     'error': 
                         <p className='error'>
                             Network error. Refresh the browser, or try again later.

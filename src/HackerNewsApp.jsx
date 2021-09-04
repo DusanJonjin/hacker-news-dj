@@ -49,7 +49,7 @@ export function HackerNewsApp() {
                 </Switch>
             </main>
             <footer className={themedClass('app-footer', dark)}>
-                © {new Date().getFullYear()}. Hacker News App by D.J.
+                © {new Date().getFullYear()}. Hackr News App by D.J.
             </footer>      
         </div>
     )

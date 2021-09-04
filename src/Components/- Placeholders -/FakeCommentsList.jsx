@@ -1,10 +1,7 @@
 import { FakeComment } from './FakeComment';
 import { themedClass } from '../../Utilities/helperFunctions';
-import { useSelector } from 'react-redux';
 
-export function FakeCommentsList({ commentsCount=20 }) {
-
-    const { dark, modern } = useSelector(state => state.theme);
+export function FakeCommentsList({ commentsCount=20, dark, modern }) {
 
     //Create an arbitary array of thirty values 
     const fakeCommentsArr = Array.from({length: commentsCount}, (v, i) => i);
