@@ -47,7 +47,7 @@
     position: absolute;
     width: 0;
     height: 2px;
-    background-color:rgb(68, 18, 3);
+    background-color:rgb(53, 14, 2);
     right: 0;
     bottom: -85%;  
     opacity: 0;
@@ -72,7 +72,7 @@
 .nav-link {
     padding: 0 5px;
     text-decoration: none;
-    color:rgb(17, 4, 1);
+    color:rgb(15, 4, 1);
     transition: .3s ease;
 }
 
