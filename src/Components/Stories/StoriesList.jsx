@@ -7,26 +7,20 @@ export function StoriesList({ storiesIDs, pageNum, storiesPerPage, storiesURL })
 
     const { dark, modern } = useSelector(state => state.theme);
 
-    const storiesList = storiesIDs.map((storyID, index) => {
-        const storyNum = ((pageNum - 1) * storiesPerPage + (index + 1));
-        return (
-            <li 
-                key={storyID}
-                className='stories-li'
-            >
-                <Story 
-                    storyID={storyID}
-                    storyNum={storyNum}
-                    pageNum={pageNum}
-                    storiesURL={storiesURL}          
-                />
-            </li>
-        )
-    })
+    const calcStoryNum = index => (pageNum - 1) * storiesPerPage + (index + 1);
 
     return (
         <ol className={themedClass('stories-ol', dark, modern)}>
-            {storiesList}
+            {storiesIDs.map((storyID, index) => 
+                <li key={storyID} className='stories-li'>
+                    <Story 
+                        storyID={storyID}
+                        storyNum={calcStoryNum(index)}
+                        pageNum={pageNum}
+                        storiesURL={storiesURL}          
+                    />
+                </li>
+            )}
         </ol>
     )
 }

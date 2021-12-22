@@ -64,17 +64,6 @@ export function StoriesPaginate(props) {
         }
     };
 
-    const paginationBtns = midBtns.map((num, i, arr) =>
-        <Link 
-            to={num === 1 ? storiesURL : `${storiesURL}/page_${num}`}
-            key={num}
-            className={`pagin-numbers ${num === pageNum ? 'pagin-num-selected' : ''}`}
-            onClick={() => handlePaginateBtnClick(num, i, arr)}
-        >
-            {num}
-        </Link>
-    );
-
     const displayThreeDots = {
         onStart: firstMidBtn !== firstPage + 1,
         onEnd: lastMidBtn !== lastPage - 1
@@ -100,7 +89,16 @@ export function StoriesPaginate(props) {
                 </React.Fragment>
             }
             <ol className='pagination-ol'>
-                {paginationBtns}
+                {midBtns.map((num, i, arr) =>
+                    <Link 
+                        to={num === 1 ? storiesURL : `${storiesURL}/page_${num}`}
+                        key={num}
+                        className={`pagin-numbers ${num === pageNum ? 'pagin-num-selected' : ''}`}
+                        onClick={() => handlePaginateBtnClick(num, i, arr)}
+                    >
+                        {num}
+                    </Link>
+                )}
             </ol>
             {showFirstLastPageBtn &&
                 <React.Fragment>
@@ -118,5 +116,5 @@ export function StoriesPaginate(props) {
                 </React.Fragment>
             }
         </div>
-    )
+    );
 }

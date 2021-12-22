@@ -16,18 +16,6 @@ export function HackerNewsApp() {
     every time the Route is changed. If we simply put the same component within Route
     (with different paths - which recieves different props) inside Switch, that 
     component will not unmount on Route change between them, it will always be mounted: */
-    const storiesRoutes = pathsAndApis.reduce((acc, { path, api }, i) => 
-    !path.includes('comments') ?
-        [
-            ...acc,
-            <Route key={i} path={path}>
-                <Stories 
-                    storiesApiName={api}
-                />
-            </Route>
-        ]
-        : acc
-    , []);
 
     useScrollToTop();
 
@@ -37,7 +25,18 @@ export function HackerNewsApp() {
             <main>
                 <Switch>
                     <Redirect exact from='/' to='/top' />
-                    {storiesRoutes}
+                    {pathsAndApis.reduce((acc, { path, api }, i) => 
+                        !path.includes('comments') ?
+                            [
+                                ...acc,
+                                <Route key={i} path={path}>
+                                    <Stories 
+                                        storiesApiName={api}
+                                    />
+                                </Route>
+                            ]
+                        : acc
+                    , [])}
                     <Route path='/comments'>
                         <Comments />
                     </Route>

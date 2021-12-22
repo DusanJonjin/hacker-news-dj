@@ -9,18 +9,16 @@ export function FakeStoriesList() {
     //Create an arbitary array of thirty values 
     const fakeStoriesArr = Array.from({length: 30}, (v, i) => i);
 
-    const fakeStoriesList = fakeStoriesArr.map(num => 
-        <li key={num}>
-            <FakeStory
-                dark={dark}
-                modern={modern}
-            />
-        </li>
-    );
-
     return (
         <ul className={themedClass('fake-stories-ul', dark, modern)}>
-            {fakeStoriesList}
+            {fakeStoriesArr.map(num => 
+                <li key={num}>
+                    <FakeStory
+                        dark={dark}
+                        modern={modern}
+                    />
+                </li>
+            )}
         </ul>
-    )
+    );
 }
